@@ -1,15 +1,20 @@
 ---
 import { Icon } from "astro-icon";
 import ContentSection from "~/components/content-section.astro";
+import ContactUs from "./contact-us.astro";
 ---
 
-<ContentSection title="Just ship less" id="intro">
+<ContentSection title="Just Go Solar" id="contact">
   <Icon slot="eyebrow" name="logomark" class="h-32" />
   <Fragment slot="lead">
-    Astro is a new kind of site builder for the
+    <ContactUs />
+  </Fragment>
+  
+  {/*<Fragment slot="lead">
+    Homesolar
     <span class="text-primary">modern</span> web.
     <span class="text-primary">Lightning-fast</span>
-    performance meets <span class="text-primary">powerful</span> developer experience.
+  performance meets <span class="text-primary">powerful</span> developer experience.
   </Fragment>
   <div class="grid grid-cols-1 gap-2 sm:grid-cols-2">
     <a
@@ -26,5 +31,5 @@ import ContentSection from "~/components/content-section.astro";
       <Icon pack="mdi" name="rocket" class="h-8" />
       <span>Try it out</span>
     </a>
-  </div>
+  </div>*/}
 </ContentSection>

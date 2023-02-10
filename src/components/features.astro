@@ -5,47 +5,45 @@ import type { FeatureItem } from "~/types";
 
 const features: Array<FeatureItem> = [
   {
-    title: "Bring Your Own Framework",
+    title: "Eliminates your electric bills",
     description:
-      "Build your site using React, Svelte, Vue, Preact, web components, or just plain ol' HTML + JavaScript.",
-    icon: "mdi:handshake",
-  },
-  {
-    title: "100% Static HTML, No JS",
-    description:
-      "Astro renders your entire page to static HTML, removing all JavaScript from your final build by default.",
-    icon: "mdi:feather",
-  },
-  {
-    title: "On-Demand Components",
-    description:
-      "Need some JS? Astro can automatically hydrate interactive components when they become visible on the page. If the user never sees it, they never load it.",
-    icon: "mdi:directions-fork",
-  },
-  {
-    title: "Broad Integration",
-    description:
-      "Astro supports TypeScript, Scoped CSS, CSS Modules, Sass, Tailwind, Markdown, MDX, and any of your favorite npm packages.",
+      "Electricity costs can make up a large portion of your monthly expenses. With a solar panel system, you’ll generate free power for your system’s entire 25+ year lifespan. Even if you don’t produce 100 percent of the energy you consume, solar still reduces your utility bills, meaning you’ll save a lot of money.",
     icon: "mdi:graph",
   },
   {
-    title: "SEO Enabled",
+    title: "Avoid rising energy costs",
     description:
-      "Automatic sitemaps, RSS feeds, pagination and collections take the pain out of SEO and syndication.",
+      "Every year, electricity prices continue to increase throughout the country. By investing in a solar energy system now, you can lock-in the price you pay for electricity today in order to protect against future increases in electricity costs.",
     icon: "mdi:search-web",
   },
   {
-    title: "Community",
+    title: "Great return on your investment",
     description:
-      "Astro is an open source project powered by hundreds of contributors making thousands of individual contributions.",
+      "At the end of the day, solar is one of the best investments you can make. The average American solar purchaser sees a return on their investment (ROI) of 20 percent or more, with most solar panel systems paying for themselves multiple times over the course of their decades-long lifetime. Try getting that ROI from stocks! ",
     icon: "mdi:account-group",
   },
+  {
+    title: "Increases your property value",
+    description: `This one’s easy: homes with solar sell for more than homes without. And when you consider that solar allows you to reduce or eliminate electricity bills, it’s easy to understand why: wouldn’t you rather live somewhere without monthly utility bills? `,
+    icon: "mdi:handshake",
+  },
+  {
+    title: "Benefits the environments",
+    description: `By installing solar, you can reduce your own personal environmental footprint. When you put a solar panel system on your property, you can avoid purchasing carbon-emitting electricity from the grid, pulling directly from your solar panels instead. And even when you’re not using the solar electricity directly`,
+    icon: "mdi:feather",
+  },
+  {
+    title: "Other benefits",
+    description: `The benefits of solar don’t stop at just financial savings and environmental benefits. There are plenty of additional reasons to go solar.
+      For instance, going solar contributes to local jobs, helping to boost your local economy. According to The Solar Foundation’s annual Solar Jobs Census, the solar industry employs over a quarter million people, most of whom work for local solar companies in your area.`,
+    icon: "mdi:directions-fork",
+  }
 ];
 ---
 
-<ContentSection title="Features" id="features">
+<ContentSection title="Benefits of Solar" id="benefits">
   <Fragment slot="lead">
-    Astro comes <span class="text-primary">batteries included</span>. It takes
+    Homesolar comes <span class="text-primary">batteries included</span>. It takes
     the best parts of
     <span class="text-primary">state-of-the-art</span>
     tools and adds its own <span class="text-primary">innovations</span>.
@@ -53,12 +51,12 @@ const features: Array<FeatureItem> = [
   <ul class="grid max-w-6xl grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
     {
       features.map(({ title, description, icon }) => (
-        <li class="flex flex-col items-center gap-4 border border-default bg-offset p-6">
+        <li class="border-default bg-offset flex flex-col items-center gap-4 border p-6">
           <div class="h-16 w-16 rounded-full border-2 border-current p-3">
             <Icon name={icon} />
           </div>
-          <p class="text-center font-extrabold text-xl">{title}</p>
-          <p class="text-center text-offset text-sm">{description}</p>
+          <p class="text-center text-xl font-extrabold">{title}</p>
+          <p class="text-offset text-center text-sm">{description}</p>
         </li>
       ))
     }
