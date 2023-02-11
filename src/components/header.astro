@@ -9,6 +9,29 @@ const navItems: Array<NavItem> = [
   { title: "Contact us", url: "#contact" },
   { title: "Services", url: "#service" },
 ];
+
+const links: Array<FooterLink> = [
+  {
+    url: "https://twitter.com/Imhomesolar",
+    description: "Homesolar on Twitter",
+    icon: "fa-brands:twitter",
+  },
+  {
+    url: "https://www.facebook.com/Homesolar12/",
+    description: "homesolar on Facebook",
+    icon: "fa-brands:facebook",
+  },
+  {
+    url: "https://www.instagram.com/Homesolar.co.in/?hl=en",
+    description: "Homesolar on Instagram",
+    icon: "fa-brands:instagram",
+  },
+  {
+    url: "https://www.linkedin.com/company/imhomesolar",
+    description: "Homesolar on Linkedin",
+    icon: "fa-brands:linkedin",
+  },
+];
 ---
 
 <header
@@ -35,6 +58,24 @@ const navItems: Array<NavItem> = [
           }
         </ul>
       </nav>
+      <div class="md:hidden">
+        <ul class="relative flex flex-row items-center justify-center">
+          {
+            links.map((link) => (
+              <li>
+                <a
+                  class="flex h-14 w-14 items-center justify-center p-4"
+                  href={link.url}
+                  target="_blank"
+                >
+                  <span class="sr-only">{link.description}</span>
+                  <Icon class="h-full" name={link.icon} />
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
       <button
         id="open-nav-button"
         type="button"

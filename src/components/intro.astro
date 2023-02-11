@@ -29,10 +29,10 @@ const links: Array<FooterLink> = [
     icon: "fa-brands:linkedin",
   },
 ];
-const widths = [450, 800, 1200];
-const sizes = "50vw";
+const widths = [450, 800];
+const sizes = "(min-width: 1024px) 30vw, (min-width: 768px) 30vw, 80vw";
 ---
-<div slot="eyebrow" class='absolute flex flex-row -space-y-6 right-5 top-20'>
+<div slot="eyebrow" class='hidden sm:block absolute flex-row -space-y-6 right-5 top-20'>
   <ul class="relative">
     {
       links.map((link) => (
