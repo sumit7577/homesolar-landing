@@ -1,11 +1,63 @@
 ---
+import { Picture } from "@astrojs/image/components";
 import { Icon } from "astro-icon";
 import ContentSection from "~/components/content-section.astro";
+import type { FooterLink } from "~/types";
 import ContactUs from "./contact-us.astro";
----
+import HeroImage from "./hero-image.astro";
+import solar from "~/assets/solar.jpg";
 
+const links: Array<FooterLink> = [
+  {
+    url: "https://twitter.com/Imhomesolar",
+    description: "Homesolar on Twitter",
+    icon: "fa-brands:twitter",
+  },
+  {
+    url: "https://www.facebook.com/Homesolar12/",
+    description: "homesolar on Facebook",
+    icon: "fa-brands:facebook",
+  },
+  {
+    url: "https://www.instagram.com/Homesolar.co.in/?hl=en",
+    description: "Homesolar on Instagram",
+    icon: "fa-brands:instagram",
+  },
+  {
+    url: "https://www.linkedin.com/company/imhomesolar",
+    description: "Homesolar on Linkedin",
+    icon: "fa-brands:linkedin",
+  },
+];
+const widths = [450, 800, 1200];
+const sizes = "50vw";
+---
+<div slot="eyebrow" class='absolute flex flex-row -space-y-6 right-5 top-20'>
+  <ul class="relative">
+    {
+      links.map((link) => (
+        <li>
+          <a
+            class="flex h-14 w-14 items-center justify-center rounded-full border-2 border-current p-4 mt-3"
+            href={link.url}
+            target="_blank"
+          >
+            <span class="sr-only">{link.description}</span>
+            <Icon class="h-full" name={link.icon} />
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+
+</div>
 <ContentSection title="Just Go Solar" id="contact">
-  <Icon slot="eyebrow" name="logomark" class="h-32" />
+  <Picture class="object-cover w-full h-full"
+  slot='eyebrow'
+  src={solar}
+  widths={widths}
+  sizes={sizes}
+  alt="Solar Panels"/>
   <Fragment slot="lead">
     <ContactUs />
   </Fragment>
