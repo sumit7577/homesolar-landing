@@ -1,8 +1,94 @@
 ---
+const Input = {
+  id: {
+    type: "integer",
+    required: false,
+    read_only: true,
+    label: "ID",
+  },
+  name: {
+    type: "string",
+    required: true,
+    read_only: false,
+    label: "Name",
+    max_length: 150,
+  },
+  email: {
+    type: "email",
+    required: false,
+    read_only: false,
+    label: "Email",
+    max_length: 150,
+  },
+  mobile: {
+    type: "string",
+    required: true,
+    read_only: false,
+    label: "Mobile",
+    max_length: 15,
+  },
+  address: {
+    type: "string",
+    required: true,
+    read_only: false,
+    label: "Address",
+    max_length: 1000,
+  },
+};
+type InputType = typeof Input;
+type InputPost = {
+  [key in keyof InputType]: InputType[key]["type"];
+};
+let status = false;
 ---
 
+<script>
+  let name = document.getElementById("full-name");
+  let email = document.getElementById("email");
+  let phone = document.getElementById("phone");
+  let address = document.getElementById("address");
+  const submit = async () => {
+    const resp = await fetch("http://homesolar.pythonanywhere.com", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: name?.value,
+        email: email?.value,
+        mobile: phone?.value,
+        address: address?.value,
+      }),
+    });
+    return resp.status;
+  };
+
+  let button = document.getElementById("submit");
+  let spinner = document.getElementById("circle");
+  button?.addEventListener("click", (e) => {
+    spinner?.classList.remove("hidden")
+    e.preventDefault();
+    submit()
+      .then((data) => {
+        if (data === 400) {
+          button?.classList.add("bg-red-600")
+          button?.classList.add("focus:ring-red-500")
+          button?.classList.add("hover:bg-red-700")
+          button.innerText= "Fill all forms correctly!"
+        }
+        else{
+          button?.classList.add("bg-green-600")
+          button?.classList.add("focus:ring-green-500")
+          button?.classList.add("hover:bg-green-700")
+          button.innerText= "Submitted"
+        }
+        spinner?.classList.add("hidden")
+      })
+      .catch((error) => {
+        spinner?.classList.add("hidden")
+      });
+  });
+</script>
 <div
-  class="flex w-full min-h-full items-center justify-center py-0 px-4 sm:px-6 lg:px-8"
+  class="flex min-h-full w-full items-center justify-center py-0 px-4 sm:px-6 lg:px-8"
 >
   <div class="w-full max-w-md space-y-8 rounded bg-white px-8 py-8">
     <div>
@@ -18,7 +104,7 @@
           <input
             id="full-name"
             name="name"
-            type='text'
+            type="text"
             required
             class="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
             placeholder="Enter your full name"
@@ -30,7 +116,7 @@
           <input
             id="phone"
             name="phone"
-            type='number'
+            type="number"
             required
             class="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
             placeholder="Enter Your Phone Number"
@@ -42,7 +128,7 @@
           <input
             id="email"
             name="email"
-            type='email'
+            type="email"
             required
             class="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
             placeholder="Enter your email address"
@@ -56,16 +142,36 @@
             name="address"
             required
             class="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-            placeholder="Enter your full address"
-          />
+            placeholder="Enter your full address"></textarea>
         </div>
       </div>
 
       <div>
         <button
           type="submit"
-          class="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 font-medium text-white text-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+          id="submit"
+          class="group relative items-center flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 font-medium text-white text-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
         >
+          <svg
+            class="-ml-1 mr-3 h-5 w-5 animate-spin hidden text-white"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            id="circle"
+            viewBox="0 0 24 24"
+          >
+            <circle
+              class="opacity-25"
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="currentColor"
+              stroke-width="4"></circle>
+            <path
+              class="opacity-75"
+              fill="currentColor"
+              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+            ></path>
+          </svg>
           Submit
         </button>
       </div>
