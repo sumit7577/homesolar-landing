@@ -9,6 +9,9 @@ import Showcase from "~/components/showcase.astro";
 import Splash from "~/components/splash.astro";
 import Future from "~/components/future.astro";
 import "~/styles/index.css";
+import { inject } from '@vercel/analytics';
+
+inject();
 
 const { generator, site } = Astro;
 const image = new URL("social.jpg", site);
