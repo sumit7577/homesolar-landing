@@ -16,7 +16,6 @@ export default defineConfig({
       external: ["svgo"]
     }
   },
-  output: "server",
   adapter: vercel({
     analytics: true
   })
