@@ -11,13 +11,12 @@ const widths = [450, 800];
 const sizes = "(min-width: 1024px) 100vw, (min-width: 768px) 30vw, 80vw";
 ---
 <ContentSection title="Just Go Solar" id="contact">
-  <Picture class="object-cover absolute left-0 z--10 w-full h-full inset-0"
+  <Picture class="object-cover absolute left-0 w-full z-0 h-[80rem] inset-0"
   slot='eyebrow'
   src={solar}
   widths={widths}
   sizes={sizes}
   alt="Solar Panels"/>
-  <Icon name="fa-brands:linkedin" slot="eyebrow" class="h-fit z-10 absolute max-h-8 max-w-8 right-5"/>
   <Fragment slot="lead">
     <ContactUs />
   </Fragment>
