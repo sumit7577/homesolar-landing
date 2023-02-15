@@ -6,22 +6,25 @@ import type { FooterLink } from "~/types";
 import ContactUs from "./contact-us.astro";
 import solar from "~/assets/solar.jpg";
 
-
 const widths = [450, 800];
 const sizes = "(min-width: 1024px) 100vw, (min-width: 768px) 30vw, 80vw";
 ---
+
 <ContentSection title="Just Go Solar" id="contact">
-  <Picture class="object-cover absolute left-0 w-full z-0 h-[80rem] inset-0"
-  slot='eyebrow'
-  src={solar}
-  widths={widths}
-  sizes={sizes}
-  alt="Solar Panels"/>
+  <Picture
+    class="object-cover absolute left-0 w-full z-0 h-[80rem] inset-0"
+    slot="eyebrow"
+    src={solar}
+    widths={widths}
+    sizes={sizes}
+    alt="Solar Panels"
+  />
   <Fragment slot="lead">
     <ContactUs />
   </Fragment>
-  
-  {/*<Fragment slot="lead">
+
+  {
+    /*<Fragment slot="lead">
     Homesolar
     <span class="text-primary">modern</span> web.
     <span class="text-primary">Lightning-fast</span>
@@ -42,5 +45,6 @@ const sizes = "(min-width: 1024px) 100vw, (min-width: 768px) 30vw, 80vw";
       <Icon pack="mdi" name="rocket" class="h-8" />
       <span>Try it out</span>
     </a>
-  </div>*/}
+  </div>*/
+  }
 </ContentSection>

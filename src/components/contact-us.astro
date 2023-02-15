@@ -1,4 +1,6 @@
 ---
+import { Icon } from "astro-icon";
+
 const Input = {
   id: {
     type: "integer",
@@ -39,10 +41,10 @@ type InputType = typeof Input;
 type InputPost = {
   [key in keyof InputType]: InputType[key]["type"];
 };
-let status = false;
 ---
 
 <script>
+  const success = false;
   let name = document.getElementById("full-name");
   let email = document.getElementById("email");
   let phone = document.getElementById("phone");
@@ -64,47 +66,48 @@ let status = false;
   let button = document.getElementById("submit");
   let spinner = document.getElementById("circle");
   button?.addEventListener("click", (e) => {
-    spinner?.classList.remove("hidden")
+    spinner?.classList.remove("hidden");
     e.preventDefault();
-    submit()
-      .then((data) => {
-        if (data === 201) {
-          button.classList.remove("bg-indigo-600")
-          button.classList.remove("focus:ring-indigo-500")
-          button.classList.remove("hover:bg-indigo-700")
-          button.classList.remove("bg-red-600")
-          button.classList.remove("focus:ring-red-500")
-          button.classList.remove("hover:bg-red-700")
-          button.classList.add("bg-green-600")
-          button.classList.add("focus:ring-green-500")
-          button.classList.add("hover:bg-green-700")
-          button.innerText= "Submitted"
-        }
-        else{
-          button.classList.remove("bg-indigo-600")
-          button.classList.remove("focus:ring-indigo-500")
-          button.classList.remove("hover:bg-indigo-700")
-          button.classList.remove("bg-green-600")
-          button.classList.remove("focus:ring-green-500")
-          button.classList.remove("hover:bg-green-700")
-          button.classList.add("bg-red-600")
-          button.classList.add("focus:ring-red-500")
-          button.classList.add("hover:bg-red-700")
-          button.innerText= "Fill all forms correctly!"
-        }
-        spinner?.classList.add("hidden")
-      })
-      .catch((error) => {
-        spinner?.classList.add("hidden")
-      });
+    if (success) {
+      alert("Form Already Submitted!");
+    } else {
+      submit()
+        .then((data) => {
+          if (data === 201) {
+            button.classList.remove("bg-indigo-600");
+            button.classList.remove("focus:ring-indigo-500");
+            button.classList.remove("hover:bg-indigo-700");
+            button.classList.remove("bg-red-600");
+            button.classList.remove("focus:ring-red-500");
+            button.classList.remove("hover:bg-red-700");
+            button.classList.add("bg-green-600");
+            button.classList.add("focus:ring-green-500");
+            button.classList.add("hover:bg-green-700");
+            button.innerText = "Submitted";
+          } else {
+            button.classList.remove("bg-indigo-600");
+            button.classList.remove("focus:ring-indigo-500");
+            button.classList.remove("hover:bg-indigo-700");
+            button.classList.remove("bg-green-600");
+            button.classList.remove("focus:ring-green-500");
+            button.classList.remove("hover:bg-green-700");
+            button.classList.add("bg-red-600");
+            button.classList.add("focus:ring-red-500");
+            button.classList.add("hover:bg-red-700");
+            button.innerText = "Fill all forms correctly!";
+          }
+          spinner?.classList.add("hidden");
+        })
+        .catch((error) => {
+          spinner?.classList.add("hidden");
+        });
+    }
   });
 </script>
-<div
-  class="flex min-h-full w-full items-center py-0 px-4 sm:px-6 lg:px-8 z-10"
->
+<div class="z-10 flex min-h-full w-full items-center py-0 px-4 sm:px-6 lg:px-8">
   <div class="w-full max-w-sm space-y-8 rounded-lg bg-white px-8 py-8">
     <div>
-      <h2 class="mt-6 text-center font-bold tracking-tight text-black text-md">
+      <h2 class="text-md mt-6 text-center font-bold tracking-tight text-black">
         Contact us for solar system
       </h2>
     </div>
@@ -158,14 +161,21 @@ let status = false;
         </div>
       </div>
 
-      <div>
+      <div class="flex flex-row justify-between gap-3">
+        <a
+          href="tel:+918441006849"
+          class="group relative flex w-full items-center justify-center rounded-md border border-transparent bg-green-600 py-2 px-4 font-medium text-white text-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+        >
+          <Icon name="mdi:phone" class="h-6 w-6" />
+          <h2 class="text-center">call</h2>
+        </a>
         <button
           type="submit"
           id="submit"
-          class="group relative items-center flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 font-medium text-white text-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+          class="group relative flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 font-medium text-white text-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
         >
           <svg
-            class="-ml-1 mr-3 h-5 w-5 animate-spin hidden text-white"
+            class="-ml-1 mr-3 hidden h-5 w-5 animate-spin text-white"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             id="circle"
