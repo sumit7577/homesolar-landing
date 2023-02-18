@@ -44,7 +44,7 @@ type InputPost = {
 ---
 
 <script>
-  const success = false;
+  let success = false;
   let name = document.getElementById("full-name");
   let email = document.getElementById("email");
   let phone = document.getElementById("phone");
@@ -74,6 +74,7 @@ type InputPost = {
       submit()
         .then((data) => {
           if (data === 201) {
+            success = true;
             button.classList.remove("bg-indigo-600");
             button.classList.remove("focus:ring-indigo-500");
             button.classList.remove("hover:bg-indigo-700");
